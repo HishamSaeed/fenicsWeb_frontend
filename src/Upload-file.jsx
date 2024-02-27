@@ -3,24 +3,28 @@ import axios from 'axios';
 
 function UploadFile() {
 
-    const [ file, setFile ] = useState(null);
+    const [ files, setFiles ] = useState(null);
     const [ progress, setProgress ] = useState({ started: false, pc: 0 });
     const [ msg, setMsg ] = useState(null);
 
     function handleUpload() {
-        if (!file) {
+        if (!files) {
             console.log("No file selected")
             return;
         }
 
         const fd = new FormData();
-        fd.append('file', file);
+        for (let i = 0; i < files.length; i++) {
+            fd.append(`file${i}`, files[i]);
+        }
+
 
         setMsg("Uploading...")
         setProgress(prevState => {
             return { ...prevState, started: true }
         })
-        axios.post('http://127.0.0.1:5000/upload_mesh', fd, {
+        console.log(files);
+        axios.post('http://127.0.0.1:5000/upload_files', fd, {
             onUploadProgress: (progressEvent) => { setProgress(prevState => {
                 return { ...prevState, pc: progressEvent.progress*100 }
             }) },
@@ -42,7 +46,7 @@ function UploadFile() {
         <div className='upload'>
             <h1>Uploading Files in React</h1>
 
-            <input onChange={ (e) => { setFile(e.target.files[0]) }} type='file'/>
+            <input onChange={ (e) => { setFiles(e.target.files) }} type='file' multiple/>
             
             <button onClick={ handleUpload }>Upload</button>
 
