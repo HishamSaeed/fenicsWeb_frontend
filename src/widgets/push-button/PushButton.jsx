@@ -13,4 +13,4 @@ const PushButton = ({ onClick, label }) => {
   );
 };
 
-export default PushButton
+export default PushButton;

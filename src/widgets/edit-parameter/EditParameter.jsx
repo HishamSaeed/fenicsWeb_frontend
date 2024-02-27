@@ -22,4 +22,4 @@ const EditParameter = ({ onChange, label, type = 'text',  }) => {
   );
 };
 
-export default EditParameter
+export default EditParameter;
