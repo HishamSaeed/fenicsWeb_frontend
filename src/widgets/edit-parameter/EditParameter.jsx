@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchData, sendData, subscribe } from '../../services/ApiService';
 
-const EditParameter = ({ onChange, label, type = 'text',  }) => {
+const EditParameter = ({ endpoint, label, type = 'text', event_type }) => {
 
   const [Value, setValue] = useState("")
 
+  useEffect(() => {
+    fetchData(endpoint).then(data => {
+      setValue(data['value']);
+    })
+    subscribe(event_type, (data) => {
+      setValue(data);
+    })
+  })
+
   const handleValueChange = (value) => {
     setValue(value);
-    onChange && onChange(value);
+    sendData(endpoint, value);
   }
 
   return (

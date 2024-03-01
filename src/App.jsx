@@ -1,4 +1,6 @@
+import './init';
 import './App.css';
+import SimulationParameter from './SimulationParameter'
 
 function App() {
 
@@ -6,7 +8,7 @@ function App() {
     <div className='app'>
       <div className='navBar'>Nav Bar</div>
       <div className='layout'>
-        <div>Parameter</div>
+        <SimulationParameter/>
         <div>Visulaziation</div>
         <div>Simulation Control</div>
       </div>
