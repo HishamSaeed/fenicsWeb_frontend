@@ -9,7 +9,6 @@ function App() {
       <div className='navBar'>Nav Bar</div>
       <div className='layout'>
         <SimulationParameter/>
-        <div>Parameter</div>
         <div>Visulaziation</div>
         <div>Simulation Control</div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchData, sendData, subscribe } from '../../services/ApiService';
 
-const EditParameter = ({ endpoint, label, type = 'text',  }) => {
+const EditParameter = ({ endpoint, label, type = 'text', event_type }) => {
 
   const [Value, setValue] = useState("")
 
@@ -9,7 +9,7 @@ const EditParameter = ({ endpoint, label, type = 'text',  }) => {
     fetchData(endpoint).then(data => {
       setValue(data['value']);
     })
-    subscribe('update_t_start', (data) => {
+    subscribe(event_type, (data) => {
       setValue(data);
     })
   })
