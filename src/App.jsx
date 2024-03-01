@@ -3,6 +3,7 @@ import './init';
 import './App.css';
 import SimulationParameter from './SimulationParameter'
 import Visulaization from './Visualization'
+import PushButton from './widgets/push-button/PushButton'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
       <div className='layout'>
         <SimulationParameter/>
         <div className="mainContent">
-          <button onClick={onShowHideVis}>Visualise</button>
+          <PushButton onClick={onShowHideVis} label="Visualise"/>
           {
             showHideVis && <div className="modal">
               <div className="modal-content">
