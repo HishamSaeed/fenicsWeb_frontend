@@ -1,9 +1,11 @@
-import { useState } from 'react';
 import './init';
 import './App.css';
-import SimulationParameter from './SimulationParameter'
-import Visulaization from './Visualization'
-import PushButton from './widgets/push-button/PushButton'
+import { useState } from 'react';
+import PushButton from './widgets/push-button/PushButton';
+import SimulationParameter from './SimulationParameter';
+import Visulaization from './Visualization';
+import SimulationControl from './SimulationControl';
+
 
 function App() {
 
@@ -30,7 +32,7 @@ function App() {
             </div>
           }
         </div>
-        <div>Simulation Control</div>
+        <SimulationControl/>
       </div>
     </div>
   )

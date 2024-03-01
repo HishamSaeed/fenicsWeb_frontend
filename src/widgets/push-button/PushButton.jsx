@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PushButton = ({ onClick, label }) => {
+const PushButton = ({ onClick, label, disabled }) => {
 
   // Function to handle button click
   const handleClick = () => {
@@ -9,7 +9,7 @@ const PushButton = ({ onClick, label }) => {
   };
 
   return (
-    <button onClick={handleClick}>{label}</button>
+    <button onClick={handleClick} disabled={disabled}>{label}</button>
   );
 };
 

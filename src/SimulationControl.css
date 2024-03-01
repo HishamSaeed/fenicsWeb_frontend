@@ -1,0 +1,9 @@
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    padding: 5px;
+}
