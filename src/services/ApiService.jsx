@@ -1,6 +1,7 @@
+import io from "socket.io-client"
 
 const apiBaseUrl = 'http://127.0.0.1:5000';
-
+const socket = io(apiBaseUrl);
 
 export const fetchData = async (endpoint) => {
     const url = `${apiBaseUrl}/${endpoint}`;
@@ -37,3 +38,7 @@ export const sendData = async (endpoint, data=null) => {
       throw error;
     }
 };
+
+export const subscribe = async (event_type, fn) => {
+  socket.on(event_type, fn);
+}
