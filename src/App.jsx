@@ -5,7 +5,8 @@ import PushButton from './widgets/push-button/PushButton';
 import SimulationParameter from './SimulationParameter';
 import Visulaization from './Visualization';
 import SimulationControl from './SimulationControl';
-
+import EditParameterNew from './widgets/edit-parameter-new/EditParameterNew';
+import PushButtonNew from './widgets/pus-button-new/PushButtonNew';
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
   return (
     <div className='app'>
       <div className='navBar'>Nav Bar</div>
+      <EditParameterNew/>
+      <PushButtonNew/>
       <div className='layout'>
         <SimulationParameter/>
         <div className="mainContent">
