@@ -1,5 +1,5 @@
 import { Typography } from 'antd'
-import EditParameterNew from '../../widgets/edit-parameter-new/EditParameterNew';
+import EditParameter from '../../widgets/edit-parameter/EditParameter';
 import ApiServiceNew from '../../services/ApiServiceNew';
 import { sendData } from '../../services/ApiService';
 
@@ -34,11 +34,11 @@ function SimulationParameter() {
     return (
         <div>
             <Typography.Title level={3}>Simulation Parameters</Typography.Title>
-            <EditParameterNew param$={tStart$} label='T-Start' onValueChanged={onTstartChange}></EditParameterNew>
-            <EditParameterNew param$={tEnd$} label='T-End' onValueChanged={onTendChange}></EditParameterNew>
-            <EditParameterNew param$={dt$} label='dt' onValueChanged={onDtChange}></EditParameterNew>
-            <EditParameterNew param$={uIn$} label='U-In' onValueChanged={onUinChange}></EditParameterNew>
-            <EditParameterNew param$={uOut$} label='U-Out' onValueChanged={onUoutChange}></EditParameterNew>
+            <EditParameter param$={tStart$} label='T-Start' onValueChanged={onTstartChange} />
+            <EditParameter param$={tEnd$} label='T-End' onValueChanged={onTendChange} />
+            <EditParameter param$={dt$} label='dt' onValueChanged={onDtChange} />
+            <EditParameter param$={uIn$} label='U-In' onValueChanged={onUinChange} />
+            <EditParameter param$={uOut$} label='U-Out' onValueChanged={onUoutChange} />
         </div>
     )
 }
