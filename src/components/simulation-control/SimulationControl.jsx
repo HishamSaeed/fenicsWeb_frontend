@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { sendData, subscribe } from './services/ApiService';
-import PushButton from './widgets/push-button/PushButton'
+import { sendData, subscribe } from '../../services/ApiService';
+import PushButton from '../../widgets/push-button/PushButton'
 import './SimulationControl.css'
 
 function SimulationControl() {

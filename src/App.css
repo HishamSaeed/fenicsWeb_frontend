@@ -5,34 +5,15 @@
   height: 100%;
 }
 
-.layout {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
-}
-
-.navBar {
-  display: flex;
-  justify-content: center;
-}
-
-.mainContent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  align-self: center;
-}
-
-button {
-  width: 20%;
-  align-self: center;
-}
-
 .modal {
   display: flex;
   flex-direction: column;
-  align-self: center;
+  width: 400px;
+}
+
+.demo-logo-vertical {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 6px;
 }
