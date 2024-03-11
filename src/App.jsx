@@ -5,7 +5,7 @@ import PushButton from './widgets/push-button/PushButton';
 import SimulationParameter from './SimulationParameter';
 import Visulaization from './Visualization';
 import SimulationControl from './SimulationControl';
-import { MenuFoldOutlined, MenuUnfoldOutlined, HeatMapOutlined, SettingOutlined  } from '@ant-design/icons'
+import { MenuFoldOutlined, MenuUnfoldOutlined, HeatMapOutlined, SettingOutlined, CaretRightOutlined  } from '@ant-design/icons'
 import { Layout, Menu, Button, theme } from 'antd';
 import { LayoutPageNav } from './models/LayoutPage';
 
@@ -20,6 +20,10 @@ function App() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const handleMenuSelect = ({ key }) => {
+    setContentPage(Number(key));
+  };
+
   return (
     <div className='app'>
       <Layout>
@@ -29,6 +33,7 @@ function App() {
           theme='dark'
           mode='inline'
           defaultSelectedKeys={[contentPage]}
+          onClick={handleMenuSelect}
           items={[
             {
               key: LayoutPageNav.SimulationParameter.toString(),
@@ -39,9 +44,15 @@ function App() {
               key: LayoutPageNav.SimulationVisualization.toString(),
               icon: <HeatMapOutlined />,
               label: 'Visualization',
+            },
+            {
+              key: LayoutPageNav.SimulationControl.toString(),
+              icon: <CaretRightOutlined />,
+              label: 'Run Simulation',
             }
           ]}
-        />
+        >
+        </Menu>
       </Sider>
       <Layout>
           <Header
@@ -70,7 +81,11 @@ function App() {
               borderRadius: borderRadiusLG,
             }}
           >
-            Content
+            <div>
+              { (contentPage === LayoutPageNav.SimulationParameter) && <SimulationParameter/> }
+              { (contentPage === LayoutPageNav.SimulationVisualization) && <div className="modal"><Visulaization /></div> }
+              { (contentPage === LayoutPageNav.SimulationControl) && <SimulationControl/> }
+            </div>
           </Content>
       </Layout>
     </Layout>  
