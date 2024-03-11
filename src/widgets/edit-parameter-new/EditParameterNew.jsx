@@ -1,4 +1,3 @@
-import { SettingOutlined } from '@ant-design/icons'
 import React, { useEffect, useState }  from 'react';
 import { InputNumber, Select, Space, Typography } from 'antd'
 
