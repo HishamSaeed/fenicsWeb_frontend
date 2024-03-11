@@ -1,11 +1,8 @@
 import './init';
 import './App.css';
 import { useState } from 'react';
-import PushButton from './widgets/push-button/PushButton';
-import SimulationParameter from './SimulationParameter';
-import Visulaization from './Visualization';
-import SimulationControl from './SimulationControl';
-import { MenuFoldOutlined, MenuUnfoldOutlined, HeatMapOutlined, SettingOutlined, CaretRightOutlined  } from '@ant-design/icons'
+import { MENU_LIST } from './components/MenuList';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Layout, Menu, Button, theme } from 'antd';
 import { LayoutPageNav } from './models/LayoutPage';
 
@@ -32,25 +29,15 @@ function App() {
         <Menu
           theme='dark'
           mode='inline'
-          defaultSelectedKeys={[contentPage]}
+          defaultSelectedKeys={[contentPage.toString()]}
           onClick={handleMenuSelect}
-          items={[
-            {
-              key: LayoutPageNav.SimulationParameter.toString(),
-              icon: <SettingOutlined />,
-              label: 'Simulation Settings',
-            },
-            {
-              key: LayoutPageNav.SimulationVisualization.toString(),
-              icon: <HeatMapOutlined />,
-              label: 'Visualization',
-            },
-            {
-              key: LayoutPageNav.SimulationControl.toString(),
-              icon: <CaretRightOutlined />,
-              label: 'Run Simulation',
+          items={MENU_LIST.map(entry => {
+            return {
+              key: entry.key,
+              icon: <entry.icon/>,
+              label: entry.label
             }
-          ]}
+          })}
         >
         </Menu>
       </Sider>
@@ -82,9 +69,15 @@ function App() {
             }}
           >
             <div>
-              { (contentPage === LayoutPageNav.SimulationParameter) && <SimulationParameter/> }
-              { (contentPage === LayoutPageNav.SimulationVisualization) && <div className="modal"><Visulaization /></div> }
-              { (contentPage === LayoutPageNav.SimulationControl) && <SimulationControl/> }
+              {
+                MENU_LIST.map(entry => {
+                  return (
+                    <div key={entry.key}>
+                      { (contentPage === entry.key) && <entry.component/> }
+                    </div>
+                  );
+                })
+              }
             </div>
           </Content>
       </Layout>
@@ -92,27 +85,6 @@ function App() {
     </div>
       
   )
-  // return (
-  //   <div className='app'>
-  //     <div className='navBar'>Nav Bar</div>
-  //     <div className='layout'>
-  //       <SimulationParameter/>
-  //       <div className="mainContent">
-  //         <PushButton onClick={onShowHideVis} label="Visualise"/>
-  //         {
-  //           showHideVis && <div className="modal">
-  //             <div className="modal-content">
-  //               <span className="Close" onClick={onShowHideVis}>&times;</span>
-  //               <Visulaization></Visulaization>
-
-  //             </div>
-  //           </div>
-  //         }
-  //       </div>
-  //       <SimulationControl/>
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default App
