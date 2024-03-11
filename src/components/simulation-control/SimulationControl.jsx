@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Flex } from 'antd';
 import { sendData, subscribe } from '../../services/ApiService';
-import PushButtonNew from '../../widgets/pus-button-new/PushButtonNew'
+import PushButton from '../../widgets/pus-button/PushButton'
 import ApiServiceNew from '../../services/ApiServiceNew';
 import './SimulationControl.css'
 
@@ -24,8 +24,8 @@ function SimulationControl() {
 
     return (
         <Flex vertical="true" gap="large" justify="center">
-            <PushButtonNew onPushed={onCreateSimulation} label="Create Simulation" disabled$={isSimulationRunning$}/>
-            <PushButtonNew onPushed={onSimulate} label="Simulate" disabled$={isSimulationRunning$}/>
+            <PushButton onPushed={onCreateSimulation} label="Create Simulation" disabled$={isSimulationRunning$}/>
+            <PushButton onPushed={onSimulate} label="Simulate" disabled$={isSimulationRunning$}/>
             { isSimulationRunning && <label>simulation running</label> }
         </Flex>
     )

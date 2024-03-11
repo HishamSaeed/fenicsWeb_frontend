@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react';
 import { Button, Flex } from 'antd';
 
-const PushButtonNew = ({ onPushed, label = '', disabled$ = null}) => {
+const PushButton = ({ onPushed, label = '', disabled$ = null}) => {
     
     const [isDisabled, setDisabled] = useState(false)
 
@@ -27,4 +27,4 @@ const PushButtonNew = ({ onPushed, label = '', disabled$ = null}) => {
     );
 }
 
-export default PushButtonNew;
+export default PushButton;
