@@ -72,7 +72,7 @@ function App() {
               {
                 MENU_LIST.map(entry => {
                   return (
-                    <div key={entry.key}>
+                    <div key={entry.key} className='modal'>
                       { (contentPage === entry.key) && <entry.component/> }
                     </div>
                   );

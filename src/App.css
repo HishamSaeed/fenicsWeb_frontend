@@ -5,30 +5,6 @@
   height: 100%;
 }
 
-.layout {
-  display: flex;
-  width: 100%;
-  height: 95vh;
-}
-
-.navBar {
-  display: flex;
-  justify-content: center;
-}
-
-.mainContent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  align-self: center;
-}
-
-button {
-  width: 20%;
-  align-self: center;
-}
-
 .modal {
   display: flex;
   flex-direction: column;
