@@ -1,4 +1,4 @@
-import EditParameter from './widgets/edit-parameter/EditParameter';
+import EditParameter from '../../widgets/edit-parameter/EditParameter';
 
 function SimulationParameter() {
 
