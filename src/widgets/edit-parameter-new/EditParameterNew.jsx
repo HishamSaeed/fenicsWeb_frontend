@@ -1,10 +1,29 @@
 import { SettingOutlined } from '@ant-design/icons'
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import { InputNumber, Select, Space, Typography } from 'antd'
 
 const { Option } = Select;
 
-const EditParameterNew = () => {
+const EditParameterNew = ({ param$, onValueChanged, label = '' }) => {
+
+    const [value, setValue] = useState('')
+    const [units, setUnits] = useState([])
+
+    useEffect(() => {
+        const sub = param$.subscribe(param => {
+            setValue(param?.value)
+            if ( param?.units )
+                setUnits(param?.units)
+        })
+
+        return () => {
+            sub.unsubscribe();
+        }
+      }, [])
+
+      const valueChanged = (value) => {
+        onValueChanged(value);
+      };
 
     const selectBefore = (
         <Select
@@ -25,22 +44,26 @@ const EditParameterNew = () => {
                 width: 60,
             }}
         >
-            <Option value="USD">$</Option>
-            <Option value="EUR">€</Option>
-            <Option value="GBP">£</Option>
-            <Option value="CNY">¥</Option>
+            {
+                units.map(entry => {
+                    return (
+                        <Option key={entry} value="entry">{entry}</Option>
+                    );
+                })
+            }
         </Select>
     );
  
     return (
         <Space direction='vertical' align='center'>
-            <Typography.Title level={5}>Title</Typography.Title>
+            <Typography.Title level={5}>{label}</Typography.Title>
             <InputNumber 
                 addonBefore={selectBefore} 
-                addonAfter={selectAfter} 
+                addonAfter={units.length ? selectAfter : ''} 
                 defaultValue={100} 
                 disabled={false}
-                stringMode={false}/>
+                value={value}
+                onChange={valueChanged}/>
         </Space>
     )
 }
