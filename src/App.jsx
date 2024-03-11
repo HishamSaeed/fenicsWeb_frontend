@@ -5,37 +5,99 @@ import PushButton from './widgets/push-button/PushButton';
 import SimulationParameter from './SimulationParameter';
 import Visulaization from './Visualization';
 import SimulationControl from './SimulationControl';
+import { MenuFoldOutlined, MenuUnfoldOutlined, HeatMapOutlined, SettingOutlined  } from '@ant-design/icons'
+import { Layout, Menu, Button, theme } from 'antd';
+import { LayoutPageNav } from './models/LayoutPage';
 
+const { Header, Sider, Content } = Layout;
 
 function App() {
 
-  const [showHideVis, setShowVis] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
+  const [contentPage, setContentPage] = useState(LayoutPageNav.SimulationParameter);
 
-  const onShowHideVis = () => {
-    setShowVis(!showHideVis)
-  }
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
   return (
     <div className='app'>
-      <div className='navBar'>Nav Bar</div>
-      <div className='layout'>
-        <SimulationParameter/>
-        <div className="mainContent">
-          <PushButton onClick={onShowHideVis} label="Visualise"/>
-          {
-            showHideVis && <div className="modal">
-              <div className="modal-content">
-                <span className="Close" onClick={onShowHideVis}>&times;</span>
-                <Visulaization></Visulaization>
-
-              </div>
-            </div>
-          }
-        </div>
-        <SimulationControl/>
-      </div>
+      <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className='demo-logo-vertical'/>
+        <Menu
+          theme='dark'
+          mode='inline'
+          defaultSelectedKeys={[contentPage]}
+          items={[
+            {
+              key: LayoutPageNav.SimulationParameter.toString(),
+              icon: <SettingOutlined />,
+              label: 'Simulation Settings',
+            },
+            {
+              key: LayoutPageNav.SimulationVisualization.toString(),
+              icon: <HeatMapOutlined />,
+              label: 'Visualization',
+            }
+          ]}
+        />
+      </Sider>
+      <Layout>
+          <Header
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+            }}
+          >
+            <Button
+              type='text'
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
+            />
+          </Header>
+          <Content
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              minHeight: 280,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            Content
+          </Content>
+      </Layout>
+    </Layout>  
     </div>
+      
   )
+  // return (
+  //   <div className='app'>
+  //     <div className='navBar'>Nav Bar</div>
+  //     <div className='layout'>
+  //       <SimulationParameter/>
+  //       <div className="mainContent">
+  //         <PushButton onClick={onShowHideVis} label="Visualise"/>
+  //         {
+  //           showHideVis && <div className="modal">
+  //             <div className="modal-content">
+  //               <span className="Close" onClick={onShowHideVis}>&times;</span>
+  //               <Visulaization></Visulaization>
+
+  //             </div>
+  //           </div>
+  //         }
+  //       </div>
+  //       <SimulationControl/>
+  //     </div>
+  //   </div>
+  // )
 }
 
 export default App

@@ -7,10 +7,8 @@
 
 .layout {
   display: flex;
-  flex-direction: row;
   width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
+  height: 95vh;
 }
 
 .navBar {
@@ -35,4 +33,11 @@ button {
   display: flex;
   flex-direction: column;
   align-self: center;
+}
+
+.demo-logo-vertical {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 6px;
 }
