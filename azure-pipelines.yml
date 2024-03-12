@@ -32,7 +32,6 @@ stages:
             WebAppName: 'fenicsWeb-frontend'
             packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
             RuntimeStack: 'NODE|18-lts'
-            StartupCommand: 'node server.js'
         
             
 
