@@ -26,16 +26,10 @@ stages:
         
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+            PathtoPublish: '$(System.DefaultWorkingDirectory)/build'
             artifactName: 'drop'
             
-        - task: DownloadBuildArtifacts@1
-          inputs:
-            buildType: 'current'
-            downloadType: 'single'
-            artifactName: 'drop'
-            itemPattern: '**/*.zip'
-            downloadPath: '$(System.ArtifactsDirectory)'
+
   
   
 
