@@ -24,6 +24,11 @@ stages:
             npm run build
           displayName: 'npm install and build'
         
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+            artifactName: 'drop'
+            
         - task: DownloadBuildArtifacts@1
           inputs:
             buildType: 'current'
