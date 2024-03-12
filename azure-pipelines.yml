@@ -23,6 +23,14 @@ stages:
             npm install
             npm run build
           displayName: 'npm install and build'
+        
+        - task: DownloadBuildArtifacts@1
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'drop'
+            itemPattern: '**/*.zip'
+            downloadPath: '$(System.ArtifactsDirectory)'
   
   
 
