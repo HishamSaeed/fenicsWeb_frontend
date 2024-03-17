@@ -3,7 +3,7 @@ import { IWebSocketMessage } from '../models/WebSocketMessage';
 
 class SocketService {
   private socket: Socket;
-  private apiBaseUrl = 'http://127.0.0.1:5000'
+  private apiBaseUrl = 'http://192.168.178.23:5000'
 
   constructor() {
     this.socket = io(this.apiBaseUrl); // Replace with your server URL
