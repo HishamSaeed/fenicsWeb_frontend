@@ -1,6 +1,6 @@
 import io from "socket.io-client"
 
-const apiBaseUrl = 'http://127.0.0.1:5000';
+const apiBaseUrl = 'http://192.168.178.23:5000';
 const socket = io(apiBaseUrl);
 
 export const fetchData = async (endpoint) => {
