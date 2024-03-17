@@ -2,9 +2,15 @@ import { Typography } from 'antd'
 import EditParameter from '../../widgets/edit-parameter/EditParameter';
 import ApiServiceNew from '../../services/ApiServiceNew';
 import { sendData } from '../../services/ApiService';
+import { useEffect } from 'react';
 
 function SimulationParameter() {
 
+    useEffect(() => {
+        sendData('publish_events');
+        return
+    }, []);
+    
     const tStart$ = ApiServiceNew.subscribeToObservable('update_t_start');
     const tEnd$ = ApiServiceNew.subscribeToObservable('update_t_end');
     const dt$ = ApiServiceNew.subscribeToObservable('update_dt');
