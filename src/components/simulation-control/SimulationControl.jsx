@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { Flex } from 'antd';
 import { sendData, subscribe } from '../../services/ApiService';
-import PushButton from '../../widgets/push-button/PushButton'
+import PushButton from '../../widgets/push-button/PushButton';
+import SpinComponent from '../../widgets/spin/Spin';
+import ApiServiceNew from '../../services/ApiServiceNew';
 import './SimulationControl.css'
 
 function SimulationControl() {
 
     const [isSimulationRunning, setIsSimulationRunning] = useState(false)
+
+    const isSimulationRunning$ = ApiServiceNew.subscribeToObservable('simulation_running');
 
     const onCreateSimulation = () => {
         sendData('create_simulation')
@@ -19,11 +24,11 @@ function SimulationControl() {
     }
 
     return (
-        <div className='mainContent'>
-            <PushButton className='btn' onClick={onCreateSimulation} label="Create Simulation" disabled={isSimulationRunning}/>
-            <PushButton className='btn' onClick={onSimulate} label="Simulate" disabled={isSimulationRunning}/>
-            { isSimulationRunning && <label>simulation running</label> }
-        </div>
+        <Flex vertical="true" gap="large" justify="center">
+            <PushButton onPushed={onCreateSimulation} label="Create Simulation" disabled$={isSimulationRunning$}/>
+            <PushButton onPushed={onSimulate} label="Simulate" disabled$={isSimulationRunning$}/>
+            { isSimulationRunning && <SpinComponent message='Simulation is Running'/> }
+        </Flex>
     )
 }
 

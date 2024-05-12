@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState }  from 'react';
+import { Button, Flex } from 'antd';
 
-const PushButton = ({ onClick, label, disabled }) => {
+const PushButton = ({ onPushed, label = '', disabled$ = null}) => {
+    
+    const [isDisabled, setDisabled] = useState(false)
 
-  // Function to handle button click
-  const handleClick = () => {
-    // Emit an output (event) to the parent component
-    onClick && onClick();
-  };
+    useEffect(() => {
+      let sub;
+      if(disabled$) {
+        sub = disabled$.subscribe(disabled => {
+          setDisabled(disabled)
+      })
+      }
 
-  return (
-    <button onClick={handleClick} disabled={disabled}>{label}</button>
-  );
-};
+      return () => {
+        if ( sub ) {
+          sub.unsubscribe();
+        }
+      }
+    }, [])
+
+    return (
+        <Flex gap="small" wrap="wrap">
+          <Button shape="round" onClick={onPushed} disabled={isDisabled}>{label}</Button>
+        </Flex>
+    );
+}
 
 export default PushButton;

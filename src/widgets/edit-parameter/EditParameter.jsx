@@ -1,35 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { fetchData, sendData, subscribe } from '../../services/ApiService';
+import React, { useEffect, useState }  from 'react';
+import { InputNumber, Select, Space, Typography } from 'antd'
 
-const EditParameter = ({ endpoint, label, type = 'text', event_type }) => {
+const { Option } = Select;
 
-  const [Value, setValue] = useState("")
+const EditParameter = ({ param$, onValueChanged, label = '' }) => {
 
-  useEffect(() => {
-    fetchData(endpoint).then(data => {
-      setValue(data['value']);
-    })
-    subscribe(event_type, (data) => {
-      setValue(data);
-    })
-  })
+    const [value, setValue] = useState('')
+    const [units, setUnits] = useState([])
 
-  const handleValueChange = (value) => {
-    setValue(value);
-    sendData(endpoint, value);
-  }
+    useEffect(() => {
+        const sub = param$.subscribe(param => {
+            setValue(param?.value)
+            if ( param?.units )
+                setUnits(param?.units)
+        })
 
-  return (
-    <div>
-      <label htmlFor="editParameterLabel">{label}</label>
-      <input
-          type='type'
-          id='editParameterLabel'
-          value={Value}
-          onChange={(e) => handleValueChange(e.target.value)}
-      />
-    </div>
-  );
-};
+        return () => {
+            sub.unsubscribe();
+        }
+      }, [])
+
+      const valueChanged = (value) => {
+        onValueChanged(value);
+      };
+
+    const selectBefore = (
+        <Select
+            defaultValue="add"
+            style={{
+              width: 60,
+            }}
+        >
+            <Option value="add">+</Option>
+            <Option value="minus">-</Option>
+        </Select>
+    );
+
+    const selectAfter = (
+        <Select
+            defaultValue="USD"
+            style={{
+                width: 60,
+            }}
+        >
+            {
+                units.map(entry => {
+                    return (
+                        <Option key={entry} value="entry">{entry}</Option>
+                    );
+                })
+            }
+        </Select>
+    );
+ 
+    return (
+        <Space direction='vertical' align='center'>
+            <Typography.Title level={5}>{label}</Typography.Title>
+            <InputNumber 
+                addonBefore={selectBefore} 
+                addonAfter={units.length ? selectAfter : ''} 
+                defaultValue={100} 
+                disabled={false}
+                value={value}
+                onChange={valueChanged}/>
+        </Space>
+    )
+}
 
 export default EditParameter;

@@ -5,6 +5,7 @@ import { MENU_LIST } from './components/MenuList';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Layout, Menu, Button, theme } from 'antd';
 import { LayoutPageNav } from './models/LayoutPage';
+import AlertComponent from './widgets/alert/AlertComponent';
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,6 +47,9 @@ function App() {
             style={{
               padding: 0,
               background: colorBgContainer,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between'
             }}
           >
             <Button
@@ -55,9 +59,12 @@ function App() {
               style={{
                 fontSize: '16px',
                 width: 64,
-                height: 64,
+                height: 64
               }}
             />
+            <div className='alert'>
+              <AlertComponent  message='Under Construction' type='warning'/>
+            </div>
           </Header>
           <Content
             style={{
