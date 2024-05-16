@@ -11,6 +11,12 @@
   width: 400px;
 }
 
+.vis {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 10px);
+}
+
 .demo-logo-vertical {
   height: 32px;
   margin: 16px;

@@ -79,7 +79,7 @@ function App() {
               {
                 MENU_LIST.map(entry => {
                   return (
-                    <div key={entry.key} className='modal'>
+                    <div key={entry.key} className={entry.key === LayoutPageNav.SimulationVisualization ? 'vis' : 'modal'}>
                       { (contentPage === entry.key) && <entry.component/> }
                     </div>
                   );
