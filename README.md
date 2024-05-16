@@ -15,7 +15,7 @@ The node version used for this project is nodejs 18, to install it
 - Install nodejs: `sudo apt install nodejs -y`
 - check nodejs version: `node -v`
 
-### Option 2: Install nodejs 18 using node version manager
+### Option 2: Install nodejs 18 using node version manager (recommended)
 - Add PPA: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh`
 - activate PPA: `source ~/.bashrc`
 - Install nodejs v 18: `nvm install v18.16.1`
